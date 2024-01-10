@@ -1,0 +1,142 @@
+//RC CAR WITH BLUETOOTH
+
+#include <SoftwareSerial.h>
+#define blueTX 2
+#define blueRX 3
+char ser = 0;
+char ble = 0;
+SoftwareSerial HC06(blueTX, blueRX);
+
+
+const int trig_pin = 7; 
+const int echo_pin = 6;
+
+
+
+int speed_L = 10;                                //왼쪽바퀴 
+int wheel_L = 9; 
+int val_L = 140;
+
+int speed_R = 11;                                 //오른쪽바퀴
+int wheel_R = 12; 
+int val_R = 140;
+
+
+
+void setup() {
+
+    Serial.begin(9600);
+    HC06.begin(9600);
+
+    pinMode(speed_L, OUTPUT);
+    pinMode(wheel_L, OUTPUT);
+    digitalWrite(wheel_L, LOW);
+    analogWrite(speed_L, 0);
+
+    pinMode(speed_R, OUTPUT);
+    pinMode(wheel_R, OUTPUT);
+    digitalWrite(wheel_R, LOW);
+    analogWrite(speed_R, 0);
+
+    pinMode(trig_pin, OUTPUT);    //트리거 발산설정
+    pinMode(echo_pin, INPUT);     //ECHO 수렴
+
+
+
+
+}
+
+// void HC06proc(){
+//     if(Serial.available()>0){
+//       ser = Serial.read();
+//       HC06.write(ser);
+//   }
+//     if(HC06.available()>0){
+//       ble = HC06.read();
+//       Serial.write(ble);
+//   }
+// }
+
+
+
+
+
+
+
+void loop() {
+  
+  
+
+  digitalWrite(trig_pin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig_pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig_pin, LOW);
+
+  long duration = pulseIn(echo_pin, HIGH);
+  long distance = (duration /2) / 29.1 ;
+
+
+  if (distance <10) {
+      digitalWrite(wheel_L, LOW);
+      analogWrite(speed_L,0);
+
+      digitalWrite(wheel_R, LOW);
+      analogWrite(speed_R, 0);
+
+    }
+  
+  
+  
+  if (HC06.available()>0 ) {               //시리얼 모니터상 데이터가 입력되었다면 
+    char c = HC06.read();
+    Serial.write(c);
+
+    if(c=='B') {
+      digitalWrite(wheel_L, LOW);
+      analogWrite(speed_L, val_L);
+
+      digitalWrite(wheel_R, LOW);
+      analogWrite(speed_R, val_R);
+
+    }
+
+    else if (c=='F'){
+      digitalWrite(wheel_L, HIGH);
+      analogWrite(speed_L, val_L);
+
+      digitalWrite(wheel_R, HIGH);
+      analogWrite(speed_R, val_R);
+    }
+
+    else if (c=='S') {
+      digitalWrite(wheel_L, LOW);
+      analogWrite(speed_L,0);
+
+      digitalWrite(wheel_R, LOW);
+      analogWrite(speed_R, 0);
+
+    }
+
+    else if (c=='R') {
+      digitalWrite(wheel_L, HIGH);
+      analogWrite(speed_L,val_L);
+
+      digitalWrite(wheel_R, LOW);
+      analogWrite(speed_R, 0);
+
+    }
+
+    else if (c=='L') {
+      digitalWrite(wheel_L, LOW);
+      analogWrite(speed_L,val_L);
+
+      digitalWrite(wheel_R, HIGH);
+      analogWrite(speed_R, 0);
+
+    }
+
+  
+  }
+
+}
