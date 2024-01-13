@@ -1,0 +1,100 @@
+//Codeup 100제연습[출력하기]
+
+//1001. 기본적인 명령이 출력문이다 Hello출력하시오
+
+#include <stdio.h>
+
+int main(void) {                 //void는 비워도 되나 나는 기계를 다룰 예정이기에 오류방지 위해 넣는다. 
+
+	printf("Hello\n");
+
+
+return 0;
+}
+
+
+
+//1002. 공백()을 포함한 문장을 출력. Hello World(대소문자 구분) 
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("Hello World\n");
+
+
+return 0;
+
+}
+
+
+
+//1003. 줄을 바꿔 출력하는 출력문을 연습
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("Hello\nWorld\n");
+
+return 0;
+
+}
+
+
+
+//1004. 작은 따옴표(single quotation mark)가 들어있는 특수한 형태의 출력문에 대한 연습
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("\'Hello\'\n");
+	
+
+return 0 ;
+
+}
+
+
+//1005. 큰따옴표(double quotation mark)가 포함된 출력문
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("\"Hello World\"\n");
+	
+
+return 0 ;
+
+}
+
+
+
+//1006. 특수문자 출력 "!@#$%^&*()"  (단, 큰따옴표도 함께 출력한다.)
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("\"!@#$%%^&*()\"\n");
+	
+
+return 0 ;
+
+}
+
+
+
+//1007. 윈도우 운영체제의 파일 경로를 출력하는 연습   "C:\Download\hello.cpp" (단, 큰따옴표도 함께 출력한다.)
+
+#include <stdio.h>
+
+int main(void) {
+
+	printf("\"C:\\Download\\hello.cpp\"\n");                         //c언어상 주소표현시 주의	
+
+return 0 ;
+
+}
