@@ -1,0 +1,210 @@
+#python practice 2023.12.28
+
+#딕셔너리 연습
+
+dic01={'바나나': 10 , '사과' : 15, '체리' : 8}
+order = ' '
+
+while True :
+    order = input("주문하실 과일은 무엇인가요?:")
+
+    if order == 'q':
+        break
+
+    elif order in dic01:
+        
+        dic01[order] = dic01[order] -1 
+        print(f"이제 {order}는 {dic01[order]}개 남았습니다.")
+
+    elif dic01[order] == 0 :
+        print(f"{order}는 목록에 없습니다.")
+
+    else : 
+        print(f"{order}는 재고가 없습니다.")
+    
+
+#[모듈]
+        
+#모듈(기초)
+import math                             #import 모듈명(파일명) - 모듈 전체를 가져옴
+num1 = math.pow(2,3)                    #math.함수명 pow는 제곱수 /sqrt은 제곱근
+num2 = math.sqrt(9)
+
+print(num1 + num2)
+
+import math as m                        #모듈명을 줄여서 사용가능
+num1 = m.pow(2,3)                       
+num2 = m.sqrt(9)
+
+# from 모듈명  import
+from math import pow as p, sqrt as sq     #모듈에서 특정 함수나 클래스만 사용하고 싶을 때 사용하는 방법(일부만 가져옴- 다른함수 ,클래스 )
+  
+from math import pa
+
+num1 = math.pow(2,3)
+num2 =math.sqrt(9)
+
+print(num1 + num2)
+
+
+
+#모듈(random) 
+import random as r
+
+while True :
+    a = r.randint(1,100)
+    b = r.randint(1,100)
+    c = a+b
+
+    print(f"{a}+{b}= ?", end= ' ')
+    answer = int(input())
+
+    if answer == c:
+        print("정답입니다.")
+    else:
+        print(f"오답입니다. 정답은 {c}입니다.")
+        break
+
+
+
+#모듈(random) - 리스트응용
+#sample,choice,shuffle 함수 
+import random as rd 
+
+num = list(range(1,46))
+lot = rd.sample(num,6)
+print(lot)
+
+
+
+#<내장함수>
+#1. abs() - 절대값 리턴하는함수
+#2. all(x) - 반복가능한 데이터를 입력 받고 그 요소안 모두가 참이면 True, 거짓이 하나라도 있으면 False, x가 빈값도 False 리턴
+#3. any(x) - 반복...                              하나라도 참이면 True, 모두 거짓이면 False
+
+#4. enumerate(x)
+
+
+fruits = ['사과','복숭아','딸기', '복숭아']
+for i in enumerate(fruits):
+    print(i, fruits)
+for i, letter in enumerate(fruits, start =1) :
+    print(i, letter)
+
+
+#함수
+def print_hello(a,b,c) :
+    print(a, "hi, hello", b, c)
+
+print_hello("카이로스","연말","새해")
+
+
+
+def add_num(a,b) :
+    res1 = a+b
+    res2 = a*b
+    # print(res)
+    return res1, res2
+
+my_sum, my_mul = add_num(4,5)
+print(my_sum, my_mul)
+
+
+#함수 예제)
+def calc(a,b) :
+    result1 = a //b +a*3
+    result2 = a % b
+    return result1 , result2
+
+
+num1 = int(input("숫자1 입력: "))
+num2= int(input("숫자2 입력: "))
+
+
+
+
+c,d = calc(num1, num2)
+s = calc(a,b)
+print(s)
+print(f"{a}를 {b}로 나눈 몫은 {c}이고, 나머지는 {d}입니다.")
+
+
+#함수예제2)
+
+def sqt(a):
+
+    sol = a**2
+
+    return sol
+
+
+num = int(input())
+print(sqt(num))
+
+
+# #함수예제3)
+import math as ma
+def circle_area(r):
+    area = r**2 * ma.pi
+    return area
+
+
+
+ra = int(input("반지름 입력:"))
+
+print(circle_area(ra))
+
+
+
+#클래스 생성
+class Human:                                                                  #클래스 선언
+    def __init__(self, name, hobby) :                                               #def __init__(self, 초기값):
+
+        self.name = name                                                            #멤버초기화(속성)
+        self.hobby = hobby
+
+    def intro(self):                                                                #메소드 정의(동작) -함수가 클래스에 속하면 '메소드'라함.
+        print("My name is %s. I like %s." %(self.name, self.hobby))
+
+
+person01 = Human("터틀봇", "그림그리기")                                        #person01은 객체, 객체생성(Human의 인스턴스 생성하기),클래스로 만든 객체를 인스턴트라 한다.
+
+person01.intro()                                                               #intro 메소드 호출
+
+
+
+
+# #모듈의 이용
+# import my_calc
+from my_calc import *
+
+# ans = my_calc.add_num(7,8)
+
+ans = add_num(7,8)
+
+print(ans) 
+
+
+
+
+
+#tkinter 사용하기
+
+from tkinter import *
+main = Tk()
+
+main.title("Tk")                                                             #타이틀 표기
+main.geometry("300x200")                                                     #윈도우크기 고정
+lbl = Label(main)                                                            #메인 윈도우 내 위젯생성
+lbl["text"] = "안녕하세요"                                                    #레이블 내용
+lbl["font"] = "Arial 20"                                                     #레이블 폰트
+lbl.pack()                                                                   #위젯마다 pack()생성
+
+ok_button = Button(main, text="확인", foreground="Red")                      #ok버튼생성
+ok_button.pack()
+cancel_btn = Button(main, text = "취소", foreground = "green")               #cancel버튼 생성
+cancel_btn.pack()
+
+
+
+main.mainloop()
