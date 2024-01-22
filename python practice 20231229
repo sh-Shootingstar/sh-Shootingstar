@@ -1,0 +1,460 @@
+#Python practice 2023.12.29 
+
+
+# 문자열 리스트 연습
+import random as rd 
+
+word = ["python", "apple", "robot"]
+correct_answer = 0
+incorrect_answer = 0
+
+for i in word :
+    # print("단어를 입력하시요", i, end= " ")
+    # qw = input(": ")
+    qw = input(f"{i} 단어를 쓰세요: ")
+    if  qw == i : 
+          correct_answer += 1
+    else :
+          incorrect_answer += 1
+
+print(f"결과출력: 정답개수 {correct_answer} , 오답개수 {incorrect_answer}")
+
+
+# a,b,c,d = map(int, intput().split())
+
+
+#class 복습
+
+class bank : 
+    def __init__(self, won) : 
+        self.won = won
+    def get_balance(self) :
+        return self.won
+    def plus(self, won) :
+        self.won += won
+    def minus(self, won) : 
+        self.won -= won
+
+a = bank(50000)
+print(a.get_balance())
+a.plus(2000)
+print(a.get_balance())
+a.minus(6000)
+print(a.get_balance())
+
+
+
+#class 복습
+
+class score : 
+    def __init__(self, Korean, English, Math) :
+        
+        self.Korean = Korean 
+        self.English = English
+        self.Math = Math
+
+
+    def get_score(self) :
+        return  self.Korean + self.English + self.Math
+    
+    def average_score(self) :
+        return  (self.Korean + self.English + self.Math)/3
+
+
+
+
+a = score(60,40,80)
+print(a.get_score())
+
+print(a.average_score())
+
+
+print (a)
+
+
+
+
+
+# #tkinter 사용하기
+
+from tkinter import *
+main = Tk()
+
+main.title("Tk")                                                             #타이틀 표기
+main.geometry("300x200")                                                     #윈도우크기 고정
+lbl = Label(main)                                                            #메인 윈도우 내 위젯생성
+lbl["text"] = "안녕하세요"                                                    #레이블 내용
+lbl["font"] = "Arial 20"                                                     #레이블 폰트
+lbl.pack()                                                                   #위젯마다 pack()생성
+
+ok_button = Button(main, text="확인", foreground="Red")                      #ok버튼생성
+ok_button.pack()
+cancel_btn = Button(main, text = "취소", foreground = "green")               #cancel버튼 생성
+cancel_btn.pack()
+
+ 
+main.mainloop()
+
+
+
+#사진넣기
+from tkinter import *
+main = Tk()
+
+main.title("Tk")                                                             #타이틀 표기
+main.geometry("600x500")                                                     #윈도우크기 고정
+img = PhotoImage(file="cat.png")
+resized_img = img.subsample(20, 20)
+
+
+lbl = Label(main, text = "안녕하세요", font = "Arial 20")         
+lbl.pack()                                                                   #위젯마다 pack()생성
+
+btn = Button(main, width=100,height= 100, image = resized_img)
+btn.pack()
+
+ 
+main.mainloop()
+
+
+#thinter 
+
+from tkinter import *
+
+def addNum() :
+    n1 = int(ent1.get())
+    n2 = int(ent2.get())
+    lbAns.config(text = n1+n2)
+
+def subNum() :
+    n1 = int(ent1.get())
+    n2 = int(ent2.get())
+    lbAns.config(text = n1-n2)
+
+def mulNum() :
+    n1 = int(ent1.get())
+    n2 = int(ent2.get())
+    lbAns.config(text = n1*n2)
+
+
+def divNum() :
+    n1 = int(ent1.get())
+    n2 = int(ent2.get())
+    lbAns.config(text = n1/n2)                #매번 만들어진 곳에 정답을 업데이트하기 위해 config사용
+
+main = Tk()                                    #매번 만들어진 곳에 정답을 업데이트하기 위해 config사용
+main.title("my calc")
+main.geometry("500x200")
+
+lbAns = Label(main,foreground= 'red',background = 'white')
+lbAns['text'] = "계산결과"                         #Label(답지)
+lbAns.pack()
+
+lb = Label(main)                               #Label 
+lb['text'] = "숫자 2개를 입력하세요"
+lb.pack()
+
+
+ent1 = Entry(main)                             #Entry 생성
+ent1.pack()
+
+ent2 = Entry(main)
+ent2.pack()
+
+btnSub = Button(main, text = "덧셈", command = addNum)               #button생성
+btnSub.pack()
+
+btnSub = Button(main, text = "뺄셈", command = subNum)
+btnSub.pack()
+
+btnSub = Button(main, text = "곱셈", command = mulNum)
+btnSub.pack()
+
+btnSub = Button(main, text = "나눗셈", command = divNum)
+btnSub.pack()
+
+
+main.mainloop()
+
+
+
+#예제 :
+
+from tkinter import *
+import random as rd 
+
+main = Tk()
+main.title = "Calculator"
+main.geometry("400x400")
+
+la = Label(main)
+lbAns = Label(main)
+
+def calc():
+    num1 = rd.randint(1,10)
+    num2 = rd.randint(1,10)
+
+    la.config(text = "{} + {} = ".format(num1, num2))
+   
+    
+def check(ent) :
+     
+    calc = num1 +num2
+    
+    if ent == calc :
+        lbAns.config(text= "정답입니다.")
+
+    else:
+        lbAns.config(text= "오답입니다.")
+
+
+
+
+
+la.pack()
+
+ent = Entry(main)                            
+ent.pack()
+
+
+num1 = 0
+num2 = 0
+lbAns.pack()
+btnSub = Button(main, text = "확인", command = check(ent) )               
+btnSub.pack() 
+
+main.mainloop()
+
+
+
+
+#예제2)
+import random as r
+from tkinter import*
+
+main=Tk()
+main.title("my calc")
+main.geometry("400x300")
+a=r.randrange(1,10)
+b=r.randrange(1,10)
+p=r.choice(["+","x","-","/"])
+
+if p=="+":
+    d=a+b
+if p=="-":
+    d=a-b
+if p=="/":
+    d=a/b
+if p=="x":
+    d=a*b
+
+lb=Label(main,text="{}{}{}=?".format(a,p,b))
+lb.pack()
+
+
+ent1=Entry(main)
+ent1.pack()
+
+
+
+def right():
+    c=float(ent1.get())
+    if d==c:
+        p=Label(main,text="정답입니다")
+        p.pack()
+    else:
+        p=Label(main,text="오답입니다.정답은 {}입니다".format(c))
+        p.pack()
+
+check=Button(main,text="확인",command=right)
+check.pack()
+# refresh_Button=Button(main,text="새로고침",command=refresh)
+# refresh_Button.pack()
+p=Label(main)
+p.pack()
+
+
+main.mainloop()
+
+
+#NumPy 응용-배열
+import numpy as np
+
+a= [1,2,3,4,5]
+b= np.array(a)
+c = np.array([1,3,5])
+
+print(b[2])
+print(c[0:2])
+print
+
+print(b*2)
+
+
+
+# matplotlib
+
+import matplotlib.pyplot as plt 
+# plt.plot([1,2,3,4],[1,9,5,7])
+# plt.plot([1,2,3,4],[1,4,9,16], 'ro') #ro-red'o' :빨간색 원형 마커 표현
+plt.plot([1,2,3],[4,4,4], '-', color = 'C0', label= 'Solid')
+plt.plot([1,2,3],[3,3,3], '--', color = 'C0', label = 'Dashed')
+plt.plot([1,2,3],[2,2,2], ':', color = 'C0', label = 'Dotted')
+plt.plot([1,2,3],[1,1,1], '-.', color= 'C0', label = 'Dash-dot' )
+plt.xlabel('X-Axis')
+plt.ylabel('y-Axis')
+plt.axis([0.8,3.2, 0.5, 5.0])                                               #x축범위, #y축범위
+plt.legend(loc='upper center', ncol =5 )                                    #선의 종류 및 라벨
+plt.show()
+
+# matplotlib 색구분
+import matplotlib.pyplot as plt
+
+plt.plot([1,2,3],[4,4,4], 'r')
+plt.plot([1,2,3],[3,3,3], 'g')
+plt.plot([1,2,3],[2,2,2], 'b')
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axis')
+plt.show()
+
+
+
+#예제 1)
+import matplotlib.pyplot as plt
+
+x= [1, 2, 3]
+y= [2, 4, 5]
+
+plt.plot(x,y,'r')
+plt.xlabel('X-Axis')
+plt.ylabel('Y-Axis')
+
+plt.fill_between(x[1:3], y[1:3], alpha = 0.5, color ='pink')        #alpha 투명도
+plt.show()
+
+
+
+
+#numpy & matplotlib
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np. arange(0, 9, 0.5)
+plt.plot(x, x, 'ro')
+plt.plot(x,x**2, color = '#FFFF00', marker='*', linewidth = 1 )
+plt.plot(x,x**3, color = 'forestgreen', marker='^', markersize = 5)
+
+plt.xticks([0,5,10])
+plt.yticks(np.arange(1,5))
+plt.show()
+
+
+
+#numpy & matplotlib
+import numpy as np
+import matplotlib.pyplot as plt
+
+x= np.arange(0,5,0.5)
+plt.plot(x, x, 'ro')
+plt.plot(x,x**2, color = '#FFFF00', marker="*", linewidth = 1)
+plt.plot(x,x**3, color = 'forestgreen', marker="^", markersize = 5)
+plt.xticks([0,2.5,5])
+plt.yticks(np.arange(0,100,10))
+plt.show()
+
+
+
+#막대그래프 이용
+import matplotlib.pyplot as plt
+import numpy as np
+
+x= np.arange(3)
+
+
+
+#자료 csv를 이용한 작업
+    #기본 보는 방법
+
+
+import csv
+f = open('202311_202311_1.csv')
+data = csv. reader(f)
+
+for view in data :
+    print(view)
+
+f.close
+
+
+
+
+#Csv 자료수정하여 그래프로 표현하기
+
+import numpy as np
+import matplotlib.pyplot as plt
+import csv 
+
+f = open('202311_202311__1.csv')                           #파일불러오기
+data = csv. reader(f)                                      #데이터 읽기
+
+data_seoul = []                                            #데이터 리스트 만들기
+data_inch = [] 
+
+for view in data:                                           #반복문을 통하여 자료수정
+
+    if '서울특별시' in view[0] :                             
+        for i in view[2:] :
+            i = i.replace(",", "")                          #자료수치에 천단위(,)를 삭제하여 숫자화
+            data_seoul.append(int(i))                       #리스트를 넣기
+
+    if '인천광역시' in view[0] :
+        for i in view[2:] :
+            i = i.replace(",", "")
+            data_inch.append(int(i))
+
+
+
+print('서울특별시', data_seoul)
+print('인천광역시', data_inch)
+f.close()                                                   #열린 f파일은 닫아준다. 
+
+x =np.arange(11)
+ages = (list(range(0,110, 10)))
+
+
+
+plt.style.use('ggplot')                                      #격자무늬
+plt.rc('font', family = 'Malgun Gothic')                     #한글출력
+plt.title('인구구조비교')
+plt.plot(data_seoul, 'r', label = '서울특별시')               #서울특별시 선형그래프(빨강표현)
+plt.plot(data_inch, 'b', label = '인천광역시')                #인천광역시 선형그래프(파랑표현)
+plt.bar(x, data_seoul)
+plt.bar(x, data_inch)
+
+
+plt.xticks(x, ages)
+# plt.yticks([0,1500000,500000])
+
+plt.xlabel('연령별 구분',loc='right' )
+plt.ylabel('인구수 구분',loc='top',rotation = 0, fontsize = 8 )
+
+
+plt.legend()                                                    
+plt.show()
+
+
+
+
+#딕셔너리 복습
+
+sco = {"kor" : 90 , "math" : 100}
+total= 0 
+average = 0
+
+
+for i in sco.values() :
+    total += i
+
+
+print ("총점 :", total,  "평균 :", total//len(sco.values()))
