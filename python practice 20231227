@@ -1,0 +1,283 @@
+#Python practice 2023.12.27
+
+
+#1. continue 사용해서 짝수출력하기
+      
+
+num = int(input("횟수입력:"))
+
+for i in range (1,num+1):
+     print(i)
+     if i % 2 != 0 :                #i % 2 ==1 : (처리도 가능)
+         continue
+
+
+
+
+#2. 반복문, 조건문(if~elif~else구문) -3의배수'Fizz', 5의 배수'Buzz' , 15의 배수'FizzBuzz'
+
+for i in range(1,101):
+    if i % 3 == 0 and i % 5 == 0 :
+        print('FizzBuzz')
+    elif i % 3 == 0 :
+        print('Fizz')
+    elif i % 5 == 0 :
+        print('Buzz')
+    else:
+        print(i)
+
+
+
+
+#3. 1~10사이 숫자입력받고 1부터 입력된 숫자까지 곱한 결과 출력하기
+
+#최초풀이
+num = int(input("숫자:"))
+while num > 10:
+    num = int(input("숫자:"))
+
+a = 1
+for i in range(1,num+1):
+    a = a * i
+print("결과: {0}".format(a))
+
+
+#더 좋은 방안
+while True: 
+    num = int(input("숫자:"))
+    a = 1
+    if num <=10 :
+        for i in range(1,num+1):
+            a = a * i
+        print("결과: {0}".format(a))
+        break
+    else:
+        print("다시입력하세요.")
+        continue
+
+
+
+#4.문자 2글자씩 출력(반복문과 인덱스 이해)
+
+text = 'hello'
+for i in range(len(text)-1):
+    print(text[i],text[i+1])
+
+
+
+#5.문자열 2단어씩 출력해보기(내장함수 split()이해)
+
+text = 'this is python script'
+words = text.split(" ")
+
+for i in range(len(words)- 1) :
+    print(words[i], words[i+1])
+
+
+
+#6. for문 range(리스트,튜플 등)연습 
+
+test_list = ['one', 'two', 'three']
+for i in test_list:
+    print(i)
+print()
+
+a = [(1,2),(3,4),(5,6)]
+for (first, last) in a:
+        print(first  + last)
+print()
+
+a = [(1,2,4),(3,5,6),(5,6,7)]
+for (a,s, last) in a:
+        print(a  + last)
+
+
+
+#7. 리스트 range연습
+
+marks = [90,25,67,45,80]
+
+number = 0
+for mark in marks:
+    number = number + 1
+    if mark >= 60:
+        print("%d번 학생은 합격입니다." %number)
+    else:
+        print("%d번 학생은 불합격입니다." %number)
+
+
+
+
+# 8. 리스트 range연습
+marks = [90,25,67,45, 80]
+
+number = 0 
+for mark in marks :
+    number = number +1
+    if mark < 60:
+        continue
+    print("%d번 학생 축하합니다. 합격입니다." %number)
+
+
+
+
+#9.터틀이용한 다각형 그리기 (3~9사이의 숫자를 입력받고) 
+ 
+import turtle as a
+
+t1 =a.Turtle()
+t1.shape('turtle')
+
+while True :
+    da = int(input("다각형:"))
+    if 10 > da >=3 :
+        for i in range(da) :
+            t1.fd(100)
+            t1.right(360/da)
+        input("press")
+        break
+
+    else: 
+        continue
+
+
+#10.터틀이용한 다각형 그리기 (3~9사이의 숫자를 입력받고)
+ 
+#  #1) 초기
+
+import turtle as a
+t1 =a.Turtle()
+while True :
+    da =int(input("다각형:"))
+
+
+    if (color_answer in color) and 3 <= da <10 :
+
+            t1.color(color_answer)
+            t1.begin_fill()
+
+            for i in range(da) :
+                t1.fd(100)
+                t1.right(360/da)
+
+            t1.end_fill()
+
+            input("press")
+            break
+        
+    else: 
+        continue
+
+
+
+
+# #2)답변에 따른 보강
+
+import turtle as a
+
+t1 =a.Turtle()
+
+while True :
+    da =int(input("다각형:"))
+    
+    color = ['red', 'yellow', 'blue', 'green','black']
+    
+    
+    if 3 <= da <10 :
+        while True:
+            color_answer = input("색을 고르세요:")
+            if color_answer in color :
+                t1.color(color_answer)
+                t1.begin_fill()
+
+                for i in range(da) :
+                    t1.fd(100)
+                    t1.right(360/da)
+
+                t1.end_fill()
+
+                input("press")
+                break
+            else:
+                print("색이 없습니다. 다시넣으시요.")
+                continue
+    else:
+        print("3~9사이 번호를 넣으시요.")
+        continue
+
+
+    
+#11. 리스트 사용(정수입력, 리스트정렬 sort(), sorted()), 가로입력 end= " ")
+
+a = []
+for i in range(5):
+    print(i+1, end=" ") 
+    a.append(int(input("정수입력:")))
+
+
+print(a)
+
+
+b=sorted(a)
+print(b)
+a.sort()
+print(a)                  #sort는 단순 정리만되고, b=a.sort()가 안됨
+
+
+
+#약속을 지키지 않을때 횟수마다 30분 청소시 총 청소시간(시간,분표시) 
+   
+student_list = [3,7,8,0,1,0,4,11,9,0]
+s =0 
+for i in student_list :
+    s = s + i*30                            # s = sum(student_list)*30 (내부함수가능)
+
+print("출력 예 : %d 시 %d 분" %(s//60, s % 60 ))
+
+
+
+
+#[딕셔너리 입문]
+dic01= dict(health =1 , mana = 5)
+dic02= dict(zip(['health', 'mana'], [1,5]))
+dic03= dict([('health',1),('mana',5)])
+
+print(dic01)
+print(dic02)
+print(dic03)
+
+
+print(dic01.items())
+
+dic01['double']=10
+print(dic01)
+
+
+for key in dic01 :
+    print(key, end = ' ')
+
+print()
+
+for value in dic01.values() :
+    print(value, end = " ")
+
+
+
+bs = dict(떡볶이='순대' ,라면='김밥')
+# print(bs)
+
+bs['연필']='지우개'
+print(bs)
+print(bs.items())
+bs2 = list(bs.items())
+print(bs2)
+
+
+bs['떡볶이'] = '어묵'
+print(bs)
+print(len(bs))
+print(bs.keys())
+
+print(bs.values())
+del bs['연필']
+print(bs)
